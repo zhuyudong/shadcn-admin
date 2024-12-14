@@ -29,247 +29,239 @@ const errors401LazyImport = createFileRoute('/(errors)/401')()
 const authSignUpLazyImport = createFileRoute('/(auth)/sign-up')()
 const authSignIn2LazyImport = createFileRoute('/(auth)/sign-in-2')()
 const authForgotPasswordLazyImport = createFileRoute(
-  '/(auth)/forgot-password',
+  '/(auth)/forgot-password'
 )()
 const AuthenticatedSettingsRouteLazyImport = createFileRoute(
-  '/_authenticated/settings',
+  '/_authenticated/settings'
 )()
 const AuthenticatedUsersIndexLazyImport = createFileRoute(
-  '/_authenticated/users/',
+  '/_authenticated/users/'
 )()
 const AuthenticatedTasksIndexLazyImport = createFileRoute(
-  '/_authenticated/tasks/',
+  '/_authenticated/tasks/'
 )()
 const AuthenticatedSettingsIndexLazyImport = createFileRoute(
-  '/_authenticated/settings/',
+  '/_authenticated/settings/'
 )()
 const AuthenticatedHelpCenterIndexLazyImport = createFileRoute(
-  '/_authenticated/help-center/',
+  '/_authenticated/help-center/'
 )()
 const AuthenticatedChatsIndexLazyImport = createFileRoute(
-  '/_authenticated/chats/',
+  '/_authenticated/chats/'
 )()
 const AuthenticatedAppsIndexLazyImport = createFileRoute(
-  '/_authenticated/apps/',
+  '/_authenticated/apps/'
 )()
 const AuthenticatedSettingsNotificationsLazyImport = createFileRoute(
-  '/_authenticated/settings/notifications',
+  '/_authenticated/settings/notifications'
 )()
 const AuthenticatedSettingsDisplayLazyImport = createFileRoute(
-  '/_authenticated/settings/display',
+  '/_authenticated/settings/display'
 )()
 const AuthenticatedSettingsAppearanceLazyImport = createFileRoute(
-  '/_authenticated/settings/appearance',
+  '/_authenticated/settings/appearance'
 )()
 const AuthenticatedSettingsAccountLazyImport = createFileRoute(
-  '/_authenticated/settings/account',
+  '/_authenticated/settings/account'
 )()
 
 // Create/Update Routes
 
 const AuthenticatedRouteRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRoute
 } as any)
 
 const AuthenticatedIndexRoute = AuthenticatedIndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => AuthenticatedRouteRoute,
+  getParentRoute: () => AuthenticatedRouteRoute
 } as any)
 
 const errors503LazyRoute = errors503LazyImport
   .update({
     id: '/(errors)/503',
     path: '/503',
-    getParentRoute: () => rootRoute,
+    getParentRoute: () => rootRoute
   } as any)
-  .lazy(() => import('./routes/(errors)/503.lazy').then((d) => d.Route))
+  .lazy(() => import('./routes/(errors)/503.lazy').then(d => d.Route))
 
 const errors500LazyRoute = errors500LazyImport
   .update({
     id: '/(errors)/500',
     path: '/500',
-    getParentRoute: () => rootRoute,
+    getParentRoute: () => rootRoute
   } as any)
-  .lazy(() => import('./routes/(errors)/500.lazy').then((d) => d.Route))
+  .lazy(() => import('./routes/(errors)/500.lazy').then(d => d.Route))
 
 const errors404LazyRoute = errors404LazyImport
   .update({
     id: '/(errors)/404',
     path: '/404',
-    getParentRoute: () => rootRoute,
+    getParentRoute: () => rootRoute
   } as any)
-  .lazy(() => import('./routes/(errors)/404.lazy').then((d) => d.Route))
+  .lazy(() => import('./routes/(errors)/404.lazy').then(d => d.Route))
 
 const errors403LazyRoute = errors403LazyImport
   .update({
     id: '/(errors)/403',
     path: '/403',
-    getParentRoute: () => rootRoute,
+    getParentRoute: () => rootRoute
   } as any)
-  .lazy(() => import('./routes/(errors)/403.lazy').then((d) => d.Route))
+  .lazy(() => import('./routes/(errors)/403.lazy').then(d => d.Route))
 
 const errors401LazyRoute = errors401LazyImport
   .update({
     id: '/(errors)/401',
     path: '/401',
-    getParentRoute: () => rootRoute,
+    getParentRoute: () => rootRoute
   } as any)
-  .lazy(() => import('./routes/(errors)/401.lazy').then((d) => d.Route))
+  .lazy(() => import('./routes/(errors)/401.lazy').then(d => d.Route))
 
 const authSignUpLazyRoute = authSignUpLazyImport
   .update({
     id: '/(auth)/sign-up',
     path: '/sign-up',
-    getParentRoute: () => rootRoute,
+    getParentRoute: () => rootRoute
   } as any)
-  .lazy(() => import('./routes/(auth)/sign-up.lazy').then((d) => d.Route))
+  .lazy(() => import('./routes/(auth)/sign-up.lazy').then(d => d.Route))
 
 const authSignIn2LazyRoute = authSignIn2LazyImport
   .update({
     id: '/(auth)/sign-in-2',
     path: '/sign-in-2',
-    getParentRoute: () => rootRoute,
+    getParentRoute: () => rootRoute
   } as any)
-  .lazy(() => import('./routes/(auth)/sign-in-2.lazy').then((d) => d.Route))
+  .lazy(() => import('./routes/(auth)/sign-in-2.lazy').then(d => d.Route))
 
 const authForgotPasswordLazyRoute = authForgotPasswordLazyImport
   .update({
     id: '/(auth)/forgot-password',
     path: '/forgot-password',
-    getParentRoute: () => rootRoute,
+    getParentRoute: () => rootRoute
   } as any)
-  .lazy(() =>
-    import('./routes/(auth)/forgot-password.lazy').then((d) => d.Route),
-  )
+  .lazy(() => import('./routes/(auth)/forgot-password.lazy').then(d => d.Route))
 
 const AuthenticatedSettingsRouteLazyRoute =
   AuthenticatedSettingsRouteLazyImport.update({
     id: '/settings',
     path: '/settings',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    getParentRoute: () => AuthenticatedRouteRoute
   } as any).lazy(() =>
-    import('./routes/_authenticated/settings/route.lazy').then((d) => d.Route),
+    import('./routes/_authenticated/settings/route.lazy').then(d => d.Route)
   )
 
 const authSignInRoute = authSignInImport.update({
   id: '/(auth)/sign-in',
   path: '/sign-in',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRoute
 } as any)
 
 const authOtpRoute = authOtpImport.update({
   id: '/(auth)/otp',
   path: '/otp',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRoute
 } as any)
 
 const auth500Route = auth500Import.update({
   id: '/(auth)/500',
   path: '/500',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRoute
 } as any)
 
 const AuthenticatedUsersIndexLazyRoute =
   AuthenticatedUsersIndexLazyImport.update({
     id: '/users/',
     path: '/users/',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    getParentRoute: () => AuthenticatedRouteRoute
   } as any).lazy(() =>
-    import('./routes/_authenticated/users/index.lazy').then((d) => d.Route),
+    import('./routes/_authenticated/users/index.lazy').then(d => d.Route)
   )
 
 const AuthenticatedTasksIndexLazyRoute =
   AuthenticatedTasksIndexLazyImport.update({
     id: '/tasks/',
     path: '/tasks/',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    getParentRoute: () => AuthenticatedRouteRoute
   } as any).lazy(() =>
-    import('./routes/_authenticated/tasks/index.lazy').then((d) => d.Route),
+    import('./routes/_authenticated/tasks/index.lazy').then(d => d.Route)
   )
 
 const AuthenticatedSettingsIndexLazyRoute =
   AuthenticatedSettingsIndexLazyImport.update({
     id: '/',
     path: '/',
-    getParentRoute: () => AuthenticatedSettingsRouteLazyRoute,
+    getParentRoute: () => AuthenticatedSettingsRouteLazyRoute
   } as any).lazy(() =>
-    import('./routes/_authenticated/settings/index.lazy').then((d) => d.Route),
+    import('./routes/_authenticated/settings/index.lazy').then(d => d.Route)
   )
 
 const AuthenticatedHelpCenterIndexLazyRoute =
   AuthenticatedHelpCenterIndexLazyImport.update({
     id: '/help-center/',
     path: '/help-center/',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    getParentRoute: () => AuthenticatedRouteRoute
   } as any).lazy(() =>
-    import('./routes/_authenticated/help-center/index.lazy').then(
-      (d) => d.Route,
-    ),
+    import('./routes/_authenticated/help-center/index.lazy').then(d => d.Route)
   )
 
 const AuthenticatedChatsIndexLazyRoute =
   AuthenticatedChatsIndexLazyImport.update({
     id: '/chats/',
     path: '/chats/',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    getParentRoute: () => AuthenticatedRouteRoute
   } as any).lazy(() =>
-    import('./routes/_authenticated/chats/index.lazy').then((d) => d.Route),
+    import('./routes/_authenticated/chats/index.lazy').then(d => d.Route)
   )
 
 const AuthenticatedAppsIndexLazyRoute = AuthenticatedAppsIndexLazyImport.update(
   {
     id: '/apps/',
     path: '/apps/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any,
+    getParentRoute: () => AuthenticatedRouteRoute
+  } as any
 ).lazy(() =>
-  import('./routes/_authenticated/apps/index.lazy').then((d) => d.Route),
+  import('./routes/_authenticated/apps/index.lazy').then(d => d.Route)
 )
 
 const AuthenticatedSettingsNotificationsLazyRoute =
   AuthenticatedSettingsNotificationsLazyImport.update({
     id: '/notifications',
     path: '/notifications',
-    getParentRoute: () => AuthenticatedSettingsRouteLazyRoute,
+    getParentRoute: () => AuthenticatedSettingsRouteLazyRoute
   } as any).lazy(() =>
     import('./routes/_authenticated/settings/notifications.lazy').then(
-      (d) => d.Route,
-    ),
+      d => d.Route
+    )
   )
 
 const AuthenticatedSettingsDisplayLazyRoute =
   AuthenticatedSettingsDisplayLazyImport.update({
     id: '/display',
     path: '/display',
-    getParentRoute: () => AuthenticatedSettingsRouteLazyRoute,
+    getParentRoute: () => AuthenticatedSettingsRouteLazyRoute
   } as any).lazy(() =>
-    import('./routes/_authenticated/settings/display.lazy').then(
-      (d) => d.Route,
-    ),
+    import('./routes/_authenticated/settings/display.lazy').then(d => d.Route)
   )
 
 const AuthenticatedSettingsAppearanceLazyRoute =
   AuthenticatedSettingsAppearanceLazyImport.update({
     id: '/appearance',
     path: '/appearance',
-    getParentRoute: () => AuthenticatedSettingsRouteLazyRoute,
+    getParentRoute: () => AuthenticatedSettingsRouteLazyRoute
   } as any).lazy(() =>
     import('./routes/_authenticated/settings/appearance.lazy').then(
-      (d) => d.Route,
-    ),
+      d => d.Route
+    )
   )
 
 const AuthenticatedSettingsAccountLazyRoute =
   AuthenticatedSettingsAccountLazyImport.update({
     id: '/account',
     path: '/account',
-    getParentRoute: () => AuthenticatedSettingsRouteLazyRoute,
+    getParentRoute: () => AuthenticatedSettingsRouteLazyRoute
   } as any).lazy(() =>
-    import('./routes/_authenticated/settings/account.lazy').then(
-      (d) => d.Route,
-    ),
+    import('./routes/_authenticated/settings/account.lazy').then(d => d.Route)
   )
 
 // Populate the FileRoutesByPath interface
@@ -467,12 +459,12 @@ const AuthenticatedSettingsRouteLazyRouteChildren: AuthenticatedSettingsRouteLaz
       AuthenticatedSettingsDisplayLazyRoute,
     AuthenticatedSettingsNotificationsLazyRoute:
       AuthenticatedSettingsNotificationsLazyRoute,
-    AuthenticatedSettingsIndexLazyRoute: AuthenticatedSettingsIndexLazyRoute,
+    AuthenticatedSettingsIndexLazyRoute: AuthenticatedSettingsIndexLazyRoute
   }
 
 const AuthenticatedSettingsRouteLazyRouteWithChildren =
   AuthenticatedSettingsRouteLazyRoute._addFileChildren(
-    AuthenticatedSettingsRouteLazyRouteChildren,
+    AuthenticatedSettingsRouteLazyRouteChildren
   )
 
 interface AuthenticatedRouteRouteChildren {
@@ -493,7 +485,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedChatsIndexLazyRoute: AuthenticatedChatsIndexLazyRoute,
   AuthenticatedHelpCenterIndexLazyRoute: AuthenticatedHelpCenterIndexLazyRoute,
   AuthenticatedTasksIndexLazyRoute: AuthenticatedTasksIndexLazyRoute,
-  AuthenticatedUsersIndexLazyRoute: AuthenticatedUsersIndexLazyRoute,
+  AuthenticatedUsersIndexLazyRoute: AuthenticatedUsersIndexLazyRoute
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -682,7 +674,7 @@ const rootRouteChildren: RootRouteChildren = {
   errors403LazyRoute: errors403LazyRoute,
   errors404LazyRoute: errors404LazyRoute,
   errors500LazyRoute: errors500LazyRoute,
-  errors503LazyRoute: errors503LazyRoute,
+  errors503LazyRoute: errors503LazyRoute
 }
 
 export const routeTree = rootRoute

@@ -4,7 +4,7 @@ import { AxiosError } from 'axios'
 import {
   QueryCache,
   QueryClient,
-  QueryClientProvider,
+  QueryClientProvider
 } from '@tanstack/react-query'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { useAuthStore } from '@/stores/authStore'
@@ -31,30 +31,30 @@ const queryClient = new QueryClient({
         )
       },
       refetchOnWindowFocus: import.meta.env.PROD,
-      staleTime: 10 * 1000, // 10s
+      staleTime: 10 * 1000 // 10s
     },
     mutations: {
-      onError: (error) => {
+      onError: error => {
         handleServerError(error)
 
         if (error instanceof AxiosError) {
           if (error.response?.status === 304) {
             toast({
               variant: 'destructive',
-              title: 'Content not modified!',
+              title: 'Content not modified!'
             })
           }
         }
-      },
-    },
+      }
+    }
   },
   queryCache: new QueryCache({
-    onError: (error) => {
+    onError: error => {
       if (error instanceof AxiosError) {
         if (error.response?.status === 401) {
           toast({
             variant: 'destructive',
-            title: 'Session expired!',
+            title: 'Session expired!'
           })
           useAuthStore.getState().auth.reset()
           const redirect = `${router.history.location.href}`
@@ -63,7 +63,7 @@ const queryClient = new QueryClient({
         if (error.response?.status === 500) {
           toast({
             variant: 'destructive',
-            title: 'Internal Server Error!',
+            title: 'Internal Server Error!'
           })
           router.navigate({ to: '/500' })
         }
@@ -71,8 +71,8 @@ const queryClient = new QueryClient({
           // router.navigate("/forbidden", { replace: true });
         }
       }
-    },
-  }),
+    }
+  })
 })
 
 // Create a new router instance
@@ -80,7 +80,7 @@ const router = createRouter({
   routeTree,
   context: { queryClient },
   defaultPreload: 'intent',
-  defaultPreloadStaleTime: 0,
+  defaultPreloadStaleTime: 0
 })
 
 // Register the router instance for type safety
@@ -97,7 +97,7 @@ if (!rootElement.innerHTML) {
   root.render(
     <StrictMode>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
+        <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
           <RouterProvider router={router} />
         </ThemeProvider>
       </QueryClientProvider>

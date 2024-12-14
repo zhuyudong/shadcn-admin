@@ -6,7 +6,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 
 interface TopNavProps extends React.HTMLAttributes<HTMLElement> {
@@ -21,14 +21,14 @@ interface TopNavProps extends React.HTMLAttributes<HTMLElement> {
 export function TopNav({ className, links, ...props }: TopNavProps) {
   return (
     <>
-      <div className='md:hidden'>
+      <div className="md:hidden">
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
-            <Button size='icon' variant='outline'>
+            <Button size="icon" variant="outline">
               <IconMenu />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent side='bottom' align='start'>
+          <DropdownMenuContent side="bottom" align="start">
             {links.map(({ title, href, isActive, disabled }) => (
               <DropdownMenuItem key={`${title}-${href}`} asChild>
                 <Link
@@ -56,7 +56,7 @@ export function TopNav({ className, links, ...props }: TopNavProps) {
             key={`${title}-${href}`}
             to={href}
             disabled={disabled}
-            className={`text-sm font-medium transition-colors hover:text-primary ${isActive ? '' : 'text-muted-foreground'}`}
+            className={`font-medium text-sm transition-colors hover:text-primary ${isActive ? '' : 'text-muted-foreground'}`}
           >
             {title}
           </Link>

@@ -1,0 +1,234 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "enabled": true,
+    "defaultBranch": "lint/biome",
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "ignore": [
+      ".history/",
+      ".swc/",
+      ".next/",
+      "package.json",
+      "coverage/",
+      "dist/",
+      "node_modules/",
+      "generators/",
+      "k8s-manifests/",
+      "test-results/",
+      "out/",
+      "packages/*/dist/",
+      "playwright-report/",
+      "public/mockServiceWorker.js",
+      "storybook-static/"
+    ],
+    "maxSize": 1024000000
+  },
+  "formatter": {
+    "lineWidth": 80,
+    "indentStyle": "space",
+    "bracketSpacing": true,
+    "formatWithErrors": true,
+    "useEditorconfig": true,
+    "ignore": ["**/*.hbs"]
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "rules": {
+      "recommended": true,
+      "nursery": {
+        "useSortedClasses": {
+          "level": "warn",
+          "fix": "safe",
+          "options": {
+            "attributes": ["classList"],
+            "functions": ["clsx", "cva", "tw"]
+          }
+        }
+      },
+      "complexity": {
+        "noForEach": "off",
+        "useArrowFunction": "off",
+        "useFlatMap": "off",
+        "noBannedTypes": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off",
+        "noUnnecessaryContinue": "off",
+        "noUnreachable": "off",
+        "noInvalidUseBeforeDeclaration": "off",
+        "noUnknownProperty": "off"
+      },
+      "style": {
+        "useNodejsImportProtocol": "off",
+        "noNonNullAssertion": "off",
+        "noUnusedTemplateLiteral": "off",
+        "noUselessElse": "off",
+        "useNumberNamespace": "off",
+        "useImportType": "warn",
+        "useTemplate": "off"
+      },
+      "a11y": {
+        "noSvgWithoutTitle": "off",
+        "useAltText": "off",
+        "useHtmlLang": "off",
+        "useKeyWithClickEvents": "off",
+        "noBlankTarget": "off",
+        "useButtonType": "off",
+        "useIframeTitle": "off",
+        "useFocusableInteractive": "off",
+        "useSemanticElements": "off",
+        "noRedundantRoles": "off"
+      },
+      "performance": {
+        "noDelete": "off",
+        "noAccumulatingSpread": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off",
+        "noConfusingVoidType": "off",
+        "noImplicitAnyLet": "off",
+        "noAssignInExpressions": "off",
+        "noPrototypeBuiltins": "off",
+        "noRedeclare": "off",
+        "noDuplicateFontNames": "off",
+        "noShorthandPropertyOverrides": "off",
+        "noDuplicateAtImportRules": "off"
+      }
+    },
+    "ignore": [
+      "node_modules/*",
+      "public/mockServiceWorker.js",
+      "generators/*",
+      "**/node_modules",
+      "**/out",
+      "**/.history",
+      "**/.swc",
+      "**/.next",
+      "**/coverage",
+      "**/storybook-static",
+      "**/test-results",
+      "packages/*/dist"
+    ]
+  },
+  "javascript": {
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    },
+    "formatter": {
+      "attributePosition": "auto",
+      "arrowParentheses": "asNeeded",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "lineWidth": 80,
+      "indentStyle": "space",
+      "jsxQuoteStyle": "double",
+      "trailingCommas": "none",
+      "semicolons": "asNeeded",
+      "quoteStyle": "single",
+      "quoteProperties": "asNeeded"
+    },
+    "globals": ["$", "_"],
+    "jsxRuntime": "reactClassic"
+  },
+  "css": {
+    "parser": {
+      "cssModules": true
+    },
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "lineWidth": 80
+    }
+  },
+  "json": {
+    "formatter": {
+      "indentWidth": 2,
+      "indentStyle": "space"
+    },
+    "parser": {
+      "allowComments": true,
+      "allowTrailingCommas": false
+    }
+  },
+  "overrides": [
+    {
+      "include": ["**/*.ts", "**/*.tsx"],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "useAnchorContent": "off",
+            "useHeadingContent": "off",
+            "useValidAnchor": "off"
+          },
+          "correctness": {
+            "noInvalidUseBeforeDeclaration": "error",
+            "noUnusedImports": "error",
+            "noUnusedVariables": "off",
+            "useExhaustiveDependencies": "off"
+          },
+          "suspicious": {
+            "noEmptyBlockStatements": "off",
+            "noExplicitAny": "off"
+          }
+        }
+      }
+    },
+    {
+      "organizeImports": {
+        "enabled": true
+      }
+    },
+    {
+      "include": ["src/**/!(__tests__)/*"],
+      "linter": {
+        "rules": {}
+      }
+    },
+    {
+      "include": ["**/*.test.ts", "**/*.test.tsx"]
+    },
+    {
+      "include": ["**/*.spec.ts", "e2e/**/*.ts"],
+      "linter": {
+        "rules": {}
+      }
+    },
+    {
+      "include": ["*.stories.*"],
+      "linter": {
+        "rules": {}
+      }
+    },
+    {
+      "include": ["*.html"]
+    },
+    {
+      "include": ["*.yaml", "*.yml"]
+    },
+    {
+      "include": ["*.md", "*.mdx"],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "useAltText": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": ["**/*.{md,mdx}/**/*.{js,jsx,ts,tsx}"],
+      "linter": {
+        "rules": {}
+      }
+    }
+  ]
+}

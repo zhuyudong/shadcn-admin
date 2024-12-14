@@ -4,7 +4,7 @@ import {
   IconArrowRightDashed,
   IconDeviceLaptop,
   IconMoon,
-  IconSun,
+  IconSun
 } from '@tabler/icons-react'
 import { useSearch } from '@/context/search-context'
 import { useTheme } from '@/context/theme-context'
@@ -15,7 +15,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
+  CommandSeparator
 } from '@/components/ui/command'
 import { sidebarData } from './layout/data/sidebar-data'
 import { ScrollArea } from './ui/scroll-area'
@@ -35,11 +35,11 @@ export function CommandMenu() {
 
   return (
     <CommandDialog modal open={open} onOpenChange={setOpen}>
-      <CommandInput placeholder='Type a command or search...' />
+      <CommandInput placeholder="Type a command or search..." />
       <CommandList>
-        <ScrollArea type='hover' className='h-72 pr-1'>
+        <ScrollArea type="hover" className="h-72 pr-1">
           <CommandEmpty>No results found.</CommandEmpty>
-          {sidebarData.navGroups.map((group) => (
+          {sidebarData.navGroups.map(group => (
             <CommandGroup key={group.title} heading={group.title}>
               {group.items.map((navItem, i) => {
                 if (navItem.url)
@@ -51,8 +51,8 @@ export function CommandMenu() {
                         runCommand(() => navigate({ to: navItem.url }))
                       }}
                     >
-                      <div className='mr-2 flex h-4 w-4 items-center justify-center'>
-                        <IconArrowRightDashed className='size-2 text-muted-foreground/80' />
+                      <div className="mr-2 flex h-4 w-4 items-center justify-center">
+                        <IconArrowRightDashed className="size-2 text-muted-foreground/80" />
                       </div>
                       {navItem.title}
                     </CommandItem>
@@ -66,8 +66,8 @@ export function CommandMenu() {
                       runCommand(() => navigate({ to: subItem.url }))
                     }}
                   >
-                    <div className='mr-2 flex h-4 w-4 items-center justify-center'>
-                      <IconArrowRightDashed className='size-2 text-muted-foreground/80' />
+                    <div className="mr-2 flex h-4 w-4 items-center justify-center">
+                      <IconArrowRightDashed className="size-2 text-muted-foreground/80" />
                     </div>
                     {subItem.title}
                   </CommandItem>
@@ -76,12 +76,12 @@ export function CommandMenu() {
             </CommandGroup>
           ))}
           <CommandSeparator />
-          <CommandGroup heading='Theme'>
+          <CommandGroup heading="Theme">
             <CommandItem onSelect={() => runCommand(() => setTheme('light'))}>
               <IconSun /> <span>Light</span>
             </CommandItem>
             <CommandItem onSelect={() => runCommand(() => setTheme('dark'))}>
-              <IconMoon className='scale-90' />
+              <IconMoon className="scale-90" />
               <span>Dark</span>
             </CommandItem>
             <CommandItem onSelect={() => runCommand(() => setTheme('system'))}>

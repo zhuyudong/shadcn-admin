@@ -3,13 +3,13 @@ import { cn } from '@/lib/utils'
 import {
   Popover,
   PopoverContent,
-  PopoverTrigger,
+  PopoverTrigger
 } from '@/components/ui/popover'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
+  TooltipTrigger
 } from '@/components/ui/tooltip'
 
 interface Props {
@@ -21,7 +21,7 @@ interface Props {
 export default function LongText({
   children,
   className = '',
-  contentClassName = '',
+  contentClassName = ''
 }: Props) {
   const ref = useRef<HTMLDivElement>(null)
   const [isOverflown, setIsOverflown] = useState(false)
@@ -44,7 +44,7 @@ export default function LongText({
 
   return (
     <>
-      <div className='hidden sm:block'>
+      <div className="hidden sm:block">
         <TooltipProvider delayDuration={0}>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -58,7 +58,7 @@ export default function LongText({
           </Tooltip>
         </TooltipProvider>
       </div>
-      <div className='sm:hidden'>
+      <div className="sm:hidden">
         <Popover>
           <PopoverTrigger asChild>
             <div ref={ref} className={cn('truncate', className)}>

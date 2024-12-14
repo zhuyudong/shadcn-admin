@@ -106,7 +106,7 @@ const PinInput = ({ className, children, ref, ...props }: PinInputProps) => {
     placeholder,
     type,
     length,
-    readOnly,
+    readOnly
   })
 
   /* call onChange func if pinValue changes */
@@ -139,7 +139,7 @@ const PinInput = ({ className, children, ref, ...props }: PinInputProps) => {
 
   const skipRef = React.useRef(0)
   let counter = 0
-  const clones = validChildren.map((child) => {
+  const clones = validChildren.map(child => {
     if (child.type === PinInputField) {
       const pinIndex = counter
       counter = counter + 1
@@ -171,7 +171,7 @@ const PinInput = ({ className, children, ref, ...props }: PinInputProps) => {
           } else {
             refMap?.delete(pinIndex)
           }
-        },
+        }
       })
     }
     skipRef.current = skipRef.current + 1
@@ -180,9 +180,9 @@ const PinInput = ({ className, children, ref, ...props }: PinInputProps) => {
 
   return (
     <PinInputContext.Provider value={true}>
-      <div ref={ref} aria-label='Pin Input' className={className} {...rest}>
+      <div ref={ref} aria-label="Pin Input" className={className} {...rest}>
         {clones}
-        <input type='hidden' name={name} form={form} value={pinValue} />
+        <input type="hidden" name={name} form={form} value={pinValue} />
       </div>
     </PinInputContext.Provider>
   )
@@ -254,7 +254,7 @@ const usePinInput = ({
   placeholder,
   type,
   length,
-  readOnly,
+  readOnly
 }: UsePinInputProps) => {
   const pinInputs = React.useMemo(
     () =>
@@ -325,7 +325,7 @@ const usePinInput = ({
       node.value = val
     }
 
-    setPins((prev) =>
+    setPins(prev =>
       prev.map((p, i) => {
         if (i === index) {
           return val
@@ -368,7 +368,7 @@ const usePinInput = ({
       .replace(/[\n\r\s]+/g, '')
     const copyArr = copyValue.split('').slice(0, length)
 
-    const isValid = copyArr.every((c) => validate(c))
+    const isValid = copyArr.every(c => validate(c))
 
     if (!isValid) return
 
@@ -429,14 +429,14 @@ const usePinInput = ({
     handleBlur,
     handleChange,
     handlePaste,
-    handleKeyDown,
+    handleKeyDown
   }
 }
 
 /* ========== Util Func ========== */
 
 const getValidChildren = (children: React.ReactNode) =>
-  React.Children.toArray(children).filter((child) => {
+  React.Children.toArray(children).filter(child => {
     if (React.isValidElement(child)) {
       return React.isValidElement(child)
     }
@@ -445,7 +445,7 @@ const getValidChildren = (children: React.ReactNode) =>
   }) as React.ReactElement<any>[]
 
 const getInputFieldCount = (children: React.ReactNode) =>
-  React.Children.toArray(children).filter((child) => {
+  React.Children.toArray(children).filter(child => {
     if (React.isValidElement(child) && child.type === PinInputField) {
       return React.isValidElement(child)
     }
