@@ -16,15 +16,15 @@ export const users = Array.from({ length: 20 }, () => {
       'active',
       'inactive',
       'invited',
-      'suspended',
+      'suspended'
     ]),
     role: faker.helpers.arrayElement([
       'superadmin',
       'admin',
       'cashier',
-      'manager',
+      'manager'
     ]),
     createdAt: faker.date.past(),
-    updatedAt: faker.date.recent(),
+    updatedAt: faker.date.recent()
   }
 })

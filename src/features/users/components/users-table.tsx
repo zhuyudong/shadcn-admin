@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import {
-  ColumnDef,
-  ColumnFiltersState,
-  RowData,
-  SortingState,
-  VisibilityState,
+  type ColumnDef,
+  type ColumnFiltersState,
+  type RowData,
+  type SortingState,
+  type VisibilityState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -12,7 +12,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
+  useReactTable
 } from '@tanstack/react-table'
 import {
   Table,
@@ -20,9 +20,9 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
+  TableRow
 } from '@/components/ui/table'
-import { User } from '../data/schema'
+import type { User } from '../data/schema'
 import { DataTablePagination } from './data-table-pagination'
 import { DataTableToolbar } from './data-table-toolbar'
 
@@ -51,7 +51,7 @@ export function UsersTable({ columns, data }: DataTableProps) {
       sorting,
       columnVisibility,
       rowSelection,
-      columnFilters,
+      columnFilters
     },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
@@ -63,18 +63,18 @@ export function UsersTable({ columns, data }: DataTableProps) {
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
-    getFacetedUniqueValues: getFacetedUniqueValues(),
+    getFacetedUniqueValues: getFacetedUniqueValues()
   })
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <DataTableToolbar table={table} />
-      <div className='rounded-md border'>
+      <div className="rounded-md border">
         <Table>
           <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id} className='group/row'>
-                {headerGroup.headers.map((header) => {
+            {table.getHeaderGroups().map(headerGroup => (
+              <TableRow key={headerGroup.id} className="group/row">
+                {headerGroup.headers.map(header => {
                   return (
                     <TableHead
                       key={header.id}
@@ -95,13 +95,13 @@ export function UsersTable({ columns, data }: DataTableProps) {
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
+              table.getRowModel().rows.map(row => (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
-                  className='group/row'
+                  className="group/row"
                 >
-                  {row.getVisibleCells().map((cell) => (
+                  {row.getVisibleCells().map(cell => (
                     <TableCell
                       key={cell.id}
                       className={cell.column.columnDef.meta?.className ?? ''}
@@ -118,7 +118,7 @@ export function UsersTable({ columns, data }: DataTableProps) {
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className='h-24 text-center'
+                  className="h-24 text-center"
                 >
                   No results.
                 </TableCell>

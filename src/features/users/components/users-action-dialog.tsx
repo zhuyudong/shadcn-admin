@@ -11,7 +11,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
+  DialogTitle
 } from '@/components/ui/dialog'
 import {
   Form,
@@ -19,14 +19,14 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { PasswordInput } from '@/components/password-input'
 import { SelectDropdown } from '@/components/select-dropdown'
 import { userTypes } from '../data/data'
-import { User } from '../data/schema'
+import type { User } from '../data/schema'
 
 const formSchema = z
   .object({
@@ -38,10 +38,10 @@ const formSchema = z
       .string()
       .min(1, { message: 'Email is required.' })
       .email({ message: 'Email is invalid.' }),
-    password: z.string().transform((pwd) => pwd.trim()),
+    password: z.string().transform(pwd => pwd.trim()),
     role: z.string().min(1, { message: 'Role is required.' }),
-    confirmPassword: z.string().transform((pwd) => pwd.trim()),
-    isEdit: z.boolean(),
+    confirmPassword: z.string().transform(pwd => pwd.trim()),
+    isEdit: z.boolean()
   })
   .superRefine(({ isEdit, password, confirmPassword }, ctx) => {
     if (!isEdit || (isEdit && password !== '')) {
@@ -49,7 +49,7 @@ const formSchema = z
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: 'Password is required.',
-          path: ['password'],
+          path: ['password']
         })
       }
 
@@ -57,7 +57,7 @@ const formSchema = z
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: 'Password must be at least 8 characters long.',
-          path: ['password'],
+          path: ['password']
         })
       }
 
@@ -65,7 +65,7 @@ const formSchema = z
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: 'Password must contain at least one lowercase letter.',
-          path: ['password'],
+          path: ['password']
         })
       }
 
@@ -73,7 +73,7 @@ const formSchema = z
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: 'Password must contain at least one number.',
-          path: ['password'],
+          path: ['password']
         })
       }
 
@@ -81,7 +81,7 @@ const formSchema = z
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: "Passwords don't match.",
-          path: ['confirmPassword'],
+          path: ['confirmPassword']
         })
       }
     }
@@ -103,7 +103,7 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
           ...currentRow,
           password: '',
           confirmPassword: '',
-          isEdit,
+          isEdit
         }
       : {
           firstName: '',
@@ -114,8 +114,8 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
           phoneNumber: '',
           password: '',
           confirmPassword: '',
-          isEdit,
-        },
+          isEdit
+        }
   })
 
   const onSubmit = (values: UserForm) => {
@@ -123,10 +123,10 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
     toast({
       title: 'You submitted the following values:',
       description: (
-        <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-          <code className='text-white'>{JSON.stringify(values, null, 2)}</code>
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
         </pre>
-      ),
+      )
     })
     onOpenChange(false)
   }
@@ -136,181 +136,181 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
   return (
     <Dialog
       open={open}
-      onOpenChange={(state) => {
+      onOpenChange={state => {
         form.reset()
         onOpenChange(state)
       }}
     >
-      <DialogContent className='sm:max-w-lg'>
-        <DialogHeader className='text-left'>
+      <DialogContent className="sm:max-w-lg">
+        <DialogHeader className="text-left">
           <DialogTitle>{isEdit ? 'Edit User' : 'Add New User'}</DialogTitle>
           <DialogDescription>
             {isEdit ? 'Update the user here. ' : 'Create new user here. '}
             Click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
-        <ScrollArea className='h-[26.25rem] w-full pr-4 -mr-4 py-1'>
+        <ScrollArea className="-mr-4 h-[26.25rem] w-full py-1 pr-4">
           <Form {...form}>
             <form
-              id='user-form'
+              id="user-form"
               onSubmit={form.handleSubmit(onSubmit)}
-              className='space-y-4 p-0.5'
+              className="space-y-4 p-0.5"
             >
               <FormField
                 control={form.control}
-                name='firstName'
+                name="firstName"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0">
+                    <FormLabel className="col-span-2 text-right">
                       First Name
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='John'
-                        className='col-span-4'
-                        autoComplete='off'
+                        placeholder="John"
+                        className="col-span-4"
+                        autoComplete="off"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='lastName'
+                name="lastName"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0">
+                    <FormLabel className="col-span-2 text-right">
                       Last Name
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='Doe'
-                        className='col-span-4'
-                        autoComplete='off'
+                        placeholder="Doe"
+                        className="col-span-4"
+                        autoComplete="off"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='username'
+                name="username"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0">
+                    <FormLabel className="col-span-2 text-right">
                       Username
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='john_doe'
-                        className='col-span-4'
+                        placeholder="john_doe"
+                        className="col-span-4"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='email'
+                name="email"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0">
+                    <FormLabel className="col-span-2 text-right">
                       Email
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='john.doe@gmail.com'
-                        className='col-span-4'
+                        placeholder="john.doe@gmail.com"
+                        className="col-span-4"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='phoneNumber'
+                name="phoneNumber"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0">
+                    <FormLabel className="col-span-2 text-right">
                       Phone Number
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='+123456789'
-                        className='col-span-4'
+                        placeholder="+123456789"
+                        className="col-span-4"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='role'
+                name="role"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0">
+                    <FormLabel className="col-span-2 text-right">
                       Role
                     </FormLabel>
                     <SelectDropdown
                       defaultValue={field.value}
                       onValueChange={field.onChange}
-                      placeholder='Select a role'
-                      className='col-span-4'
+                      placeholder="Select a role"
+                      className="col-span-4"
                       items={userTypes.map(({ label, value }) => ({
                         label,
-                        value,
+                        value
                       }))}
                     />
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='password'
+                name="password"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0">
+                    <FormLabel className="col-span-2 text-right">
                       Password
                     </FormLabel>
                     <FormControl>
                       <PasswordInput
-                        placeholder='e.g., S3cur3P@ssw0rd'
-                        className='col-span-4'
+                        placeholder="e.g., S3cur3P@ssw0rd"
+                        className="col-span-4"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='confirmPassword'
+                name="confirmPassword"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center gap-x-4 gap-y-1 space-y-0">
+                    <FormLabel className="col-span-2 text-right">
                       Confirm Password
                     </FormLabel>
                     <FormControl>
                       <PasswordInput
                         disabled={!isPasswordTouched}
-                        placeholder='e.g., S3cur3P@ssw0rd'
-                        className='col-span-4'
+                        placeholder="e.g., S3cur3P@ssw0rd"
+                        className="col-span-4"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
@@ -318,7 +318,7 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
           </Form>
         </ScrollArea>
         <DialogFooter>
-          <Button type='submit' form='user-form'>
+          <Button type="submit" form="user-form">
             Save changes
           </Button>
         </DialogFooter>
